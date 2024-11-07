@@ -1,0 +1,12 @@
+[package]
+name = "css_parser"
+version = "0.1.0"
+edition = "2021"
+description = "A simple CSS parser using the Pest library for Rust."
+
+[dependencies]
+anyhow = "1.0.93"
+clap = "4.5.20"
+pest = "2.7.14"
+pest_derive = "2.7.14"
+thiserror = "2.0.0"

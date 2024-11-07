@@ -1,0 +1,12 @@
+body {
+    font-family: "cambria";
+    background-color: #e0c5c53a;
+    margin: 0px 100px 0px 100px;
+    font-size: 20px;
+}
+header, foooter {
+    background-color: #d5d5d5;
+}
+section {
+    margin: 10px;
+}

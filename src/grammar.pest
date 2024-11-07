@@ -1,0 +1,8 @@
+WHITESPACE = _{ " " | "\t" | "\n" | "\r" }
+
+CSS_RULE = _{ selector ~ "{" ~ declarations ~ "}" }
+selector = @{ ASCII_ALPHANUMERIC+ } 
+declarations = _{ (declaration ~ WHITESPACE*)+ }
+declaration = _{ property ~ ":" ~ WHITESPACE* ~ value ~ ";" ~ WHITESPACE* }
+property = @{ ASCII_ALPHANUMERIC+ }
+value = @{ ASCII_ALPHANUMERIC+ }
