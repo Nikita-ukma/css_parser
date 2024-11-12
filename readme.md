@@ -6,23 +6,23 @@ This CSS parser is built using the `pest` parsing library in Rust. It parses sim
 
 The .pest grammar file defines the rules for parsing a CSS declaration block. Below is a breakdown of each rule:
 
-WHITESPACE: Matches whitespace characters, including spaces, tabs, newlines, and carriage returns, to be ignored in parsing.
-COMMENT: Matches CSS comments enclosed by /* and */.
-CSS_RULE: The main rule for parsing a single CSS rule, consisting of optional comments/whitespace, a selector, and declarations within { ... }.
-selector: Matches a CSS selector, which may include multiple simple_selector items separated by commas.
-simple_selector: Matches a basic CSS selector, such as an identifier, ID selector (#header), class selector (.button), or alphanumeric sequence.
-declarations: Matches multiple declaration entries inside a CSS rule.
-declaration: Parses an individual CSS declaration with a property, value, and trailing semicolon.
-property: Matches a CSS property name, including alphanumeric characters and hyphens.
-values: Matches one or more values for a property, with items separated by commas or whitespace.
-value: Matches various CSS value types, including color codes, lengths, percentages, strings, and numeric values.
-COLOR: Matches hexadecimal color codes with 3 to 6 hexadecimal digits.
-LENGTH: Matches length units in px, em, rem, or %.
-PERCENTAGE: Matches percentage values.
-STRING: Matches text in single or double quotes.
-ZERO: Matches the literal value 0.
-FLOAT: Matches floating-point numbers.
-IDENTIFIER: Matches alphanumeric keywords and names with optional hyphens.
+- WHITESPACE: Matches whitespace characters, including spaces, tabs, newlines, and carriage returns, to be ignored in parsing.
+- COMMENT: Matches CSS comments enclosed by /* and */.
+- CSS_RULE: The main rule for parsing a single CSS rule, consisting of optional comments/whitespace, a selector, and declarations within { ... }.
+- selector: Matches a CSS selector, which may include multiple simple_selector items separated by commas.
+- simple_selector: Matches a basic CSS selector, such as an identifier, ID selector (#header), class selector (.button), or alphanumeric sequence.
+- declarations: Matches multiple declaration entries inside a CSS rule.
+- declaration: Parses an individual CSS declaration with a property, value, and trailing semicolon.
+- property: Matches a CSS property name, including alphanumeric characters and hyphens.
+- values: Matches one or more values for a property, with items separated by commas or whitespace.
+- value: Matches various CSS value types, including color codes, lengths, percentages, strings, and numeric values.
+- COLOR: Matches hexadecimal color codes with 3 to 6 hexadecimal digits.
+- LENGTH: Matches length units in px, em, rem, or %.
+- PERCENTAGE: Matches percentage values.
+- STRING: Matches text in single or double quotes.
+- ZERO: Matches the literal value 0.
+- FLOAT: Matches floating-point numbers.
+- IDENTIFIER: Matches alphanumeric keywords and names with optional hyphens.
 
 ### Example of a Simple CSS Rule
 
