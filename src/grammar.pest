@@ -1,8 +1,21 @@
 WHITESPACE = _{ " " | "\t" | "\n" | "\r" }
-
-CSS_RULE = _{ selector ~ "{" ~ declarations ~ "}" }
-selector = @{ ASCII_ALPHANUMERIC+ } 
+COMMENT = _{ "/*" ~ (!"*/" ~ ANY)* ~ "*/" }
+CSS_RULE = _{ (COMMENT | WHITESPACE)* ~ selector ~ "{" ~ WHITESPACE* ~ declarations ~ WHITESPACE* ~ "}" }
+selector = @{ (simple_selector ~ (WHITESPACE* ~ "," ~ WHITESPACE* ~ simple_selector)*) }
+simple_selector = @{ IDENTIFIER | ("#" ~ IDENTIFIER+)
+                   | ("." ~ IDENTIFIER+)
+                   | ASCII_ALPHANUMERIC+ }
 declarations = _{ (declaration ~ WHITESPACE*)+ }
-declaration = _{ property ~ ":" ~ WHITESPACE* ~ value ~ ";" ~ WHITESPACE* }
-property = @{ ASCII_ALPHANUMERIC+ }
-value = @{ ASCII_ALPHANUMERIC+ }
+declaration = _{ property ~ ":" ~ WHITESPACE* ~ values ~ ";" ~ WHITESPACE* }
+property = @{ (ASCII_ALPHANUMERIC | "-")+ }  
+values = _{ value ~ (WHITESPACE* ~ "," ~ WHITESPACE* ~ value)* }
+
+value = @{ COLOR | LENGTH | PERCENTAGE | STRING | ZERO | FLOAT |  IDENTIFIER | ASCII_ALPHANUMERIC+}
+
+COLOR = @{ "#" ~ ASCII_HEX_DIGIT{3,6} }
+LENGTH = @{ ASCII_DIGIT+ ~ ("px" | "em" | "rem" | "%") }
+PERCENTAGE = @{ ASCII_DIGIT+ ~ "%" }
+STRING = @{ "\"" ~ (!"\"" ~ ANY)* ~ "\'" | "\'" ~ (!"\'" ~ ANY)* ~ "\'" }
+ZERO = @{ "0" }
+FLOAT = @{ ASCII_DIGIT+ ~ "." ~ ASCII_DIGIT+ } 
+IDENTIFIER = @{ (ASCII_ALPHANUMERIC | "-")+ }
