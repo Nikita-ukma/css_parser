@@ -36,6 +36,7 @@ footer {
     padding: 10px 0;
     margin-top: 20px;
 }
+```
 
 ```pest
 WHITESPACE = _{ " " | "\t" | "\n" | "\r" }
