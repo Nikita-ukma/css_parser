@@ -1,5 +1,5 @@
 [package]
-name = "css_parser"
+name = "my_rust_css_parser"
 version = "0.1.0"
 edition = "2021"
 description = "A simple CSS parser using the Pest library for Rust."
