@@ -1,5 +1,5 @@
 [package]
-name = "tieliehin_css_parser"
+name = "css_parser"
 version = "0.1.0"
 edition = "2021"
 description = "A simple CSS parser using the Pest library for Rust."
@@ -8,7 +8,7 @@ repository = "https://github.com/Nikita-ukma/css_parser"
 
 [dependencies]
 anyhow = "1.0.93"
-clap = { version = "4.5.20", features = ["derive"] }
+clap = { version = "4.5.21", features = ["derive"] }
 clap_derive = "4.5.18"
 pest = "2.7.14"
 pest_derive = "2.7.14"
