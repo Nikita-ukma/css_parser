@@ -2,7 +2,7 @@ use anyhow::Result;
 use clap::CommandFactory;
 use clap::{Parser, Subcommand};
 use std::fs;
-use css_parser::parse_css;
+use my_rust_css_parser::parse_css;
 
 #[derive(Parser)]
 #[command(author = "Тєлєгін Нікіта", version = "1.0", about = "CSS Parser CLI")]

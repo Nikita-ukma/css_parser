@@ -1,6 +1,6 @@
 #[cfg(test)]
 mod tests {
-    use css_parser::parse_css;
+    use my_rust_css_parser::parse_css;
 
     #[test]
     fn test_css_rule() {
