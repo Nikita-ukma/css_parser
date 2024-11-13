@@ -1,3 +1,8 @@
+/// CSS Parser CLI
+///
+/// This parser allows you to parse CSS files, identifying the main selector types 
+/// (class, id, or element selector) and primary attributes with their values.
+
 use pest::Parser;
 use pest_derive::Parser;
 #[derive(Parser)]

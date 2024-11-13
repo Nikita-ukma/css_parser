@@ -1,21 +1,53 @@
+// Whitespace rule, matches spaces, tabs, line breaks, and carriage returns for separating CSS tokens.
 WHITESPACE = _{ " " | "\t" | "\n" | "\r" }
+
+// Comment rule, matches CSS-style comments /* ... */.
 COMMENT = _{ "/*" ~ (!"*/" ~ ANY)* ~ "*/" }
+
+// CSS_RULE rule, represents the overall CSS rule structure, allowing optional comments and whitespace,
+// followed by a selector, a block of declarations enclosed in braces.
 CSS_RULE = _{ (COMMENT | WHITESPACE)* ~ selector ~ "{" ~ WHITESPACE* ~ declarations ~ WHITESPACE* ~ "}" }
+
+// Selector rule, represents a combination of simple selectors, which may be separated by commas and whitespace.
 selector = @{ (simple_selector ~ (WHITESPACE* ~ "," ~ WHITESPACE* ~ simple_selector)*) }
-simple_selector = @{ IDENTIFIER | ("#" ~ IDENTIFIER+)
-                   | ("." ~ IDENTIFIER+)
-                   | ASCII_ALPHANUMERIC+ }
+
+// Simple selector rule, matches identifiers, class selectors (e.g., .class), ID selectors (e.g., #id),
+// and simple ASCII alphanumeric selectors.
+simple_selector = @{ IDENTIFIER | ("#" ~ IDENTIFIER+) | ("." ~ IDENTIFIER+) | ASCII_ALPHANUMERIC+ }
+
+// Declarations rule, matches one or more declarations, separated by optional whitespace.
 declarations = _{ (declaration ~ WHITESPACE*)+ }
+
+// Declaration rule, defines the structure of a CSS property-value pair followed by a semicolon and optional whitespace.
 declaration = _{ property ~ ":" ~ WHITESPACE* ~ values ~ ";" ~ WHITESPACE* }
+
+// Property rule, allows alphanumeric characters and hyphens, representing CSS properties (e.g., "background-color").
 property = @{ (ASCII_ALPHANUMERIC | "-")+ }  
+
+// Values rule, allows multiple values in a declaration, separated by commas and optional whitespace.
 values = _{ value ~ (WHITESPACE* ~ "," ~ WHITESPACE* ~ value)* }
 
-value = @{ COLOR | LENGTH | PERCENTAGE | STRING | ZERO | FLOAT |  IDENTIFIER | ASCII_ALPHANUMERIC+}
+// Value rule, represents a generic value which could be a color, length, percentage, string, zero, float,
+// identifier, or a series of alphanumeric characters.
+value = @{ COLOR | LENGTH | PERCENTAGE | STRING | ZERO | FLOAT | IDENTIFIER | ASCII_ALPHANUMERIC+ }
 
+// Color rule, matches a hexadecimal color code starting with "#" and followed by 3 to 6 hex digits.
 COLOR = @{ "#" ~ ASCII_HEX_DIGIT{3,6} }
+
+// Length rule, represents a numeric length followed by a unit (e.g., px, em, rem, %).
 LENGTH = @{ ASCII_DIGIT+ ~ ("px" | "em" | "rem" | "%") }
+
+// Percentage rule, matches a number followed by a percentage sign.
 PERCENTAGE = @{ ASCII_DIGIT+ ~ "%" }
-STRING = @{ "\"" ~ (!"\"" ~ ANY)* ~ "\'" | "\'" ~ (!"\'" ~ ANY)* ~ "\'" }
+
+// String rule, matches a double-quoted or single-quoted string.
+STRING = @{ "\"" ~ (!"\"" ~ ANY)* ~ "\"" | "\'" ~ (!"\'" ~ ANY)* ~ "\'" }
+
+// Zero rule, matches a standalone zero, allowing "0" without units.
 ZERO = @{ "0" }
+
+// Float rule, matches a floating-point number with digits before and after the decimal point.
 FLOAT = @{ ASCII_DIGIT+ ~ "." ~ ASCII_DIGIT+ } 
+
+// Identifier rule, matches an identifier consisting of alphanumeric characters and hyphens.
 IDENTIFIER = @{ (ASCII_ALPHANUMERIC | "-")+ }
