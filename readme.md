@@ -1,5 +1,6 @@
 # tieliehin_css_parser
-
+docs: https://docs.rs/tieliehin_css_parser/latest/tieliehin_css_parser/
+crates: https://crates.io/crates/tieliehin_css_parser
 This CSS parser is built using the `pest` parsing library in Rust. It parses simple CSS rules into components such as selectors, properties, and values.
 
 ## Grammar
